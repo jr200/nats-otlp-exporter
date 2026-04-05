@@ -1,0 +1,36 @@
+name: begin-release-flow
+
+on:
+  push:
+    tags:
+      - v*.*.*
+
+jobs:
+  spawn-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      - name: Generate App token
+        uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          app-id: ${{ secrets.app_id }}
+          private-key: ${{ secrets.app_private_key }}
+
+      - name: dispatch-next-workflow
+        uses: peter-evans/repository-dispatch@v3
+        if: github.event_name != 'workflow_dispatch'
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          event-type: dispatch-build-publish-npmjs
+          client-payload: |-
+            {
+              "ref": "${{ github.ref }}",
+              "sha": "${{ github.sha }}",
+              "tag": "${{ env.TAG }}",
+              "checkout-ref": "${{ env.TAG }}",
+              "pnpm-run-test": "true",
+              "pnpm-publish-args": "",
+              "node-version": "22"
+            }

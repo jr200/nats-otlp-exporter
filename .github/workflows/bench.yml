@@ -1,0 +1,16 @@
+name: bench
+
+on:
+  push:
+    tags:
+      - v*.*.*
+  workflow_dispatch:
+
+jobs:
+  bench:
+    uses: jr200/github-action-templates/.github/workflows/bench.yml@main
+    with:
+      node-version: '22'
+      pnpm-version: '10'
+      warn-threshold: ${{ vars.BENCH_WARN_THRESHOLD || '10' }}
+      fail-threshold: ${{ vars.BENCH_FAIL_THRESHOLD || '50' }}

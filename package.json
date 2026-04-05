@@ -1,0 +1,91 @@
+{
+  "name": "@jr200-labs/nats-otlp-exporter",
+  "version": "0.1.0",
+  "description": "OpenTelemetry SDK exporters that publish OTLP protobuf over a NATS connection",
+  "license": "MIT",
+  "author": "Jayshan Raghunandan",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jr200-labs/nats-otlp-exporter.git"
+  },
+  "type": "module",
+  "packageManager": "pnpm@10.21.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:run": "vitest run",
+    "test:watch": "vitest",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "test:all": "pnpm test && pnpm test:integration",
+    "bench": "vitest bench --run --config vitest.bench.config.ts",
+    "bench:json": "vitest bench --run --config vitest.bench.config.ts --outputJson bench/current.json",
+    "bench:best": "node bench/runBest.mjs 3 bench/current.json vitest.bench.config.ts",
+    "bench:compare": "pnpm bench:best && node bench/compareBench.mjs bench/current.json bench/baseline.json",
+    "bench:update": "pnpm bench:best && node bench/normalizeBench.mjs bench/current.json bench/baseline.json",
+    "prettier": "prettier --write \"**/*.{ts,mjs,js,json,md,yml,yaml}\"",
+    "lint": "tsc --noEmit",
+    "prepare": "husky",
+    "prepublishOnly": "pnpm build && pnpm test"
+  },
+  "keywords": [
+    "opentelemetry",
+    "otel",
+    "otlp",
+    "nats",
+    "telemetry",
+    "traces",
+    "logs",
+    "metrics"
+  ],
+  "peerDependencies": {
+    "@nats-io/nats-core": ">=3.0.0",
+    "@opentelemetry/api": ">=1.9.0",
+    "@opentelemetry/core": ">=2.0.0",
+    "@opentelemetry/otlp-transformer": ">=0.200.0",
+    "@opentelemetry/sdk-logs": ">=0.200.0",
+    "@opentelemetry/sdk-metrics": ">=2.0.0",
+    "@opentelemetry/sdk-trace-base": ">=2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@opentelemetry/sdk-logs": {
+      "optional": true
+    },
+    "@opentelemetry/sdk-metrics": {
+      "optional": true
+    },
+    "@opentelemetry/sdk-trace-base": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@nats-io/nats-core": "^3.1.0",
+    "@nats-io/transport-node": "^3.1.0",
+    "@opentelemetry/api": "^1.9.1",
+    "@opentelemetry/core": "^2.6.1",
+    "@opentelemetry/otlp-transformer": "^0.214.0",
+    "@opentelemetry/sdk-logs": "^0.214.0",
+    "@opentelemetry/sdk-metrics": "^2.6.1",
+    "@opentelemetry/sdk-trace-base": "^2.6.1",
+    "@types/node": "^24.3.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.8.1",
+    "testcontainers": "^10.13.0",
+    "typescript": "^5.9.2",
+    "vitest": "^2.1.8"
+  }
+}

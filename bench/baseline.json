@@ -1,0 +1,196 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "filepath": "bench/exporter.bench.ts",
+      "groups": [
+        {
+          "fullName": "bench/exporter.bench.ts > NatsSpanExporter.export (sync publish, mock)",
+          "benchmarks": [
+            {
+              "name": "1 span, static subject",
+              "rank": 1,
+              "rme": 2.6780297560610364,
+              "hz": 420901.1161483499,
+              "mean": 0.002375854949378519,
+              "sampleCount": 631352
+            },
+            {
+              "name": "10 spans, static subject",
+              "rank": 2,
+              "rme": 2.094332235223191,
+              "hz": 76836.47078489458,
+              "mean": 0.01301465293479606,
+              "sampleCount": 115255
+            },
+            {
+              "name": "100 spans, static subject",
+              "rank": 3,
+              "rme": 2.2435779702447185,
+              "hz": 8622.350806963519,
+              "mean": 0.11597765184784496,
+              "sampleCount": 12934
+            }
+          ]
+        },
+        {
+          "fullName": "bench/exporter.bench.ts > NatsSpanExporter.export — Msg-Id + headers overhead",
+          "benchmarks": [
+            {
+              "name": "with auto Msg-Id (default)",
+              "rank": 3,
+              "rme": 4.092671907668423,
+              "hz": 224962.56843300854,
+              "mean": 0.004445183956449134,
+              "sampleCount": 337444
+            },
+            {
+              "name": "no Msg-Id",
+              "rank": 2,
+              "rme": 4.550413439201014,
+              "hz": 361189.1137300731,
+              "mean": 0.0027686327244827442,
+              "sampleCount": 541784
+            },
+            {
+              "name": "no headers at all",
+              "rank": 1,
+              "rme": 5.486069156659539,
+              "hz": 399166.29251484177,
+              "mean": 0.0025052215549057617,
+              "sampleCount": 598750
+            }
+          ]
+        },
+        {
+          "fullName": "bench/exporter.bench.ts > NatsSpanExporter.export — dynamic subject",
+          "benchmarks": [
+            {
+              "name": "1 span, dynamic subject",
+              "rank": 1,
+              "rme": 4.332945929565088,
+              "hz": 191202.47100279407,
+              "mean": 0.005230057931549362,
+              "sampleCount": 286804
+            },
+            {
+              "name": "100 spans, dynamic subject (single resource)",
+              "rank": 2,
+              "rme": 3.9833971798253582,
+              "hz": 7372.887814619022,
+              "mean": 0.1356320650935705,
+              "sampleCount": 11061
+            }
+          ]
+        },
+        {
+          "fullName": "bench/exporter.bench.ts > NatsSpanExporter.export — buffered (connection null)",
+          "benchmarks": [
+            {
+              "name": "push to ring buffer (disconnected)",
+              "rank": 1,
+              "rme": 4.869874775651698,
+              "hz": 255549.62674302276,
+              "mean": 0.003913134261806559,
+              "sampleCount": 383713
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filepath": "bench/ringBuffer.bench.ts",
+      "groups": [
+        {
+          "fullName": "bench/ringBuffer.bench.ts > RingBuffer.push (no eviction)",
+          "benchmarks": [
+            {
+              "name": "maxItems=1000, 1000 pushes",
+              "rank": 2,
+              "rme": 20.330453424530162,
+              "hz": 125534.48012244033,
+              "mean": 0.007965938911959868,
+              "sampleCount": 188302
+            },
+            {
+              "name": "maxBytes=1MB, 1000 pushes",
+              "rank": 1,
+              "rme": 0.36918418626927607,
+              "hz": 257404.65276650354,
+              "mean": 0.003884933660881096,
+              "sampleCount": 386107
+            }
+          ]
+        },
+        {
+          "fullName": "bench/ringBuffer.bench.ts > RingBuffer.push (with eviction)",
+          "benchmarks": [
+            {
+              "name": "maxItems=100, 10k pushes (99% eviction)",
+              "rank": 1,
+              "rme": 0.39353855864033066,
+              "hz": 9734.663408799981,
+              "mean": 0.10272568839884243,
+              "sampleCount": 14602
+            },
+            {
+              "name": "maxBytes=100KB, 10k pushes (eviction by bytes)",
+              "rank": 1,
+              "rme": 0.5883397300244688,
+              "hz": 10118.455669883875,
+              "mean": 0.0988293107787541,
+              "sampleCount": 15178
+            }
+          ]
+        },
+        {
+          "fullName": "bench/ringBuffer.bench.ts > RingBuffer.drain",
+          "benchmarks": [
+            {
+              "name": "100 items drain",
+              "rank": 1,
+              "rme": 0.30779108626984714,
+              "hz": 73761.20341524757,
+              "mean": 0.013557262540449342,
+              "sampleCount": 110642
+            },
+            {
+              "name": "10k items drain",
+              "rank": 2,
+              "rme": 1.014382360615394,
+              "hz": 721.1216740263034,
+              "mean": 1.3867285314232898,
+              "sampleCount": 1082
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filepath": "bench/uuid.bench.ts",
+      "groups": [
+        {
+          "fullName": "bench/uuid.bench.ts > uuidv7",
+          "benchmarks": [
+            {
+              "name": "generate",
+              "rank": 1,
+              "rme": 1.872493096230321,
+              "hz": 946214.9491705421,
+              "mean": 0.001056842317780549,
+              "sampleCount": 1419323
+            },
+            {
+              "name": "generate + Set.has (dedup scenario)",
+              "rank": 2,
+              "rme": 2.142840107600443,
+              "hz": 8633.548160380158,
+              "mean": 0.11582723364989805,
+              "sampleCount": 12951
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

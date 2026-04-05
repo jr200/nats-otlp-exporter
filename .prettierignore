@@ -1,0 +1,6 @@
+dist/
+node_modules/
+coverage/
+bench/current.json
+bench/baseline.json
+pnpm-lock.yaml
