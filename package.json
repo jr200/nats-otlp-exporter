@@ -84,7 +84,7 @@
     "@types/node": "^24.3.0",
     "husky": "^9.1.7",
     "prettier": "^3.8.1",
-    "testcontainers": "^10.13.0",
+    "testcontainers": "^11.14.0",
     "typescript": "^5.9.2",
     "vitest": "^4.1.4"
   }
