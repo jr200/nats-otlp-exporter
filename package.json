@@ -83,9 +83,9 @@
     "@opentelemetry/sdk-trace-base": "^2.6.1",
     "@types/node": "^24.12.2",
     "husky": "^9.1.7",
-    "prettier": "^3.8.3",
-    "testcontainers": "^10.28.0",
-    "typescript": "^5.9.3",
+    "prettier": "^3.8.1",
+    "testcontainers": "^11.14.0",
+    "typescript": "^6.0.2",
     "vitest": "^4.1.4"
   }
 }
