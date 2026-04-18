@@ -19,21 +19,21 @@ on:
 
 jobs:
   test:
-    uses: jr200-labs/github-action-templates/.github/workflows/ci_npmjs.yml@master
+    uses: jr200-labs/github-action-templates/.github/workflows/ci_npmjs.yaml@master
     with:
       node-version: '22'
       pnpm-version: '10'
       run-integration: true
 
   bench:
-    uses: jr200-labs/github-action-templates/.github/workflows/bench.yml@master
+    uses: jr200-labs/github-action-templates/.github/workflows/bench.yaml@master
     with:
       warn-threshold: ${{ vars.BENCH_WARN_THRESHOLD || '10' }}
       fail-threshold: ${{ vars.BENCH_FAIL_THRESHOLD || '50' }}
 
   publish:
     needs: [test, bench]
-    uses: jr200-labs/github-action-templates/.github/workflows/build_publish_npmjs.yml@master
+    uses: jr200-labs/github-action-templates/.github/workflows/build_publish_npmjs.yaml@master
     with:
       checkout-ref: ${{ inputs.checkout-ref || github.ref_name }}
       pnpm-run-test: 'true'
