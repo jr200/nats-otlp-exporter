@@ -85,7 +85,7 @@
     "husky": "^9.1.7",
     "prettier": "^3.8.1",
     "testcontainers": "^10.13.0",
-    "typescript": "^5.9.2",
+    "typescript": "^6.0.2",
     "vitest": "^4.1.4"
   }
 }
