@@ -7,3 +7,4 @@ dist/
 coverage/
 bench/current.json
 .husky/_/
+.shared/
