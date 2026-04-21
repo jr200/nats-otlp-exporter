@@ -1,0 +1,10 @@
+# syncpack config — enforce semver range consistency
+semverGroups:
+  - label: "Peer deps — >= range"
+    dependencyTypes:
+      - peer
+    range: ">="
+  - label: "Default — caret ranges"
+    dependencies:
+      - "**"
+    range: "^"
