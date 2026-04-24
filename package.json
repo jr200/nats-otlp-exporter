@@ -1,6 +1,6 @@
 {
   "name": "@jr200-labs/nats-otlp-exporter",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "OpenTelemetry SDK exporters that publish OTLP protobuf over a NATS connection",
   "license": "MIT",
   "author": "Jayshan Raghunandan",
